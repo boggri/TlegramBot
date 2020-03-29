@@ -35,7 +35,6 @@ public class Bot extends TelegramLongPollingBot {
                 System.out.println("token.txt file can't be read!");
                 e.printStackTrace();
             }
-
         } else {
             tempToken = System.getenv("TOKEN");
         }
@@ -47,10 +46,6 @@ public class Bot extends TelegramLongPollingBot {
             Bot.bot = new Bot();
         }
         return bot;
-    }
-
-    public String getUsernameWithFormattingOn(Update update) {
-        return update.getMessage().getChat().getUserName().replace("_", "\\_");
     }
 
     @Override
@@ -78,11 +73,11 @@ public class Bot extends TelegramLongPollingBot {
             ////LOG
             String userFirstName = update.getMessage().getChat().getFirstName();
             String userLastName = update.getMessage().getChat().getLastName();
-            String userUsername = getUsernameWithFormattingOn(update);
+            String userUsername = update.getMessage().getChat().getUserName();
             String userId = update.getMessage().getChat().getId().toString();
             String userMessageText = update.getMessage().getText();
 
-            log(userFirstName, userLastName, update.getMessage().getChat().getUserName(), userId, userMessageText, "");
+            log(userFirstName, userLastName, userUsername, userId, userMessageText, "");
         }
 
     }
@@ -90,7 +85,7 @@ public class Bot extends TelegramLongPollingBot {
     private String botGreeting(Update update) {
         String firstName = update.getMessage().getChat().getFirstName();
         String lastName = update.getMessage().getChat().getLastName();
-        String username = getUsernameWithFormattingOn(update);
+        String username = update.getMessage().getChat().getUserName();
 
         if (firstName == null) { firstName = ""; }
         if (lastName == null) { lastName = ""; }
@@ -113,7 +108,7 @@ public class Bot extends TelegramLongPollingBot {
 
     public synchronized void sendMsg(String chatId, String message) {
         SendMessage sendMessage = new SendMessage()
-                .enableMarkdown(true)
+                .enableMarkdown(false)
                 .setChatId(chatId)
                 .setText(message);
 
