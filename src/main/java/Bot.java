@@ -56,11 +56,11 @@ public class Bot extends TelegramLongPollingBot {
             String message = update.getMessage().getText();
 
             //If match pattern get five integers
-            if (message.matches("\\d+\\s(\\d+\\s)?\\d+\\s\\d+\\s\\d+\\s[-]?[01]\\s\\d+\\s\\d+")) {
+            if (message.matches("\\d+\\s(\\d+\\s)?\\d+\\s\\d+\\s\\d+\\s(-?1|0)\\s\\d+\\s\\d+")) {
 
                 CustomBotReplier customBotReplier = new DndDamager(message);
                 botAnswer = customBotReplier.start();
-                sendMsg(update.getMessage().getChatId().toString(), customBotReplier.start());
+                sendMsg(update.getMessage().getChatId().toString(), botAnswer);
 
             } else {
                 botAnswer = botGreeting(update) + "\nYou made some mistake in input! Please repeat the query.";
