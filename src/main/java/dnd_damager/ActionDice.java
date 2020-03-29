@@ -1,36 +1,38 @@
 package dnd_damager;
 
+import dnd_damager.user_input.UserInputVars;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ActionDice {
-    private List<Integer> diceThrows;
-    private List<Integer> diceCriticals;
+    private List<Integer> diceThrowsNormal;
+    private List<Integer> diceThrowsCritical;
 
     public ActionDice() {
-        diceThrows = new ArrayList<>();
-        diceCriticals = new ArrayList<>();
+        diceThrowsNormal = new ArrayList<>();
+        diceThrowsCritical = new ArrayList<>();
     }
 
-    public void throwDice(int numOfAttacks, int critValue) {
-        for (int i = 0; i < numOfAttacks; i++) {
+    public void throwDice(UserInputVars user) {
+        for (int i = 0; i < user.getNumOfAttack(); i++) {
             int throwResult = (int)(Math.random() * 20 + 1);
 
-            if (throwResult >= critValue) {
-                diceCriticals.add(throwResult);
+            if (throwResult >= user.getValueForСritical()) {
+                diceThrowsCritical.add(throwResult);
             } else {
-                diceThrows.add(throwResult);
+                diceThrowsNormal.add(throwResult);
             }
 
         }
     }
 
 
-    public List<Integer> getDiceThrows() {
-        return diceThrows;
+    public List<Integer> getDiceThrowsNormal() {
+        return diceThrowsNormal;
     }
 
-    public List<Integer> getDiceCriticals() {
-        return diceCriticals;
+    public List<Integer> getDiceThrowsCritical() {
+        return diceThrowsCritical;
     }
 }
