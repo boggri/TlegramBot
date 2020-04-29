@@ -29,6 +29,9 @@ public class DndDamager implements CustomBotReplier {
                 damageDice.getCriticalDmg()
                 );
 
+        //Dont print throw results if more than 200 attacks
+        if (userInputVars.getNumOfAttack() > 300) { return dndResponse; }
+
         //Display all not critical success throws is any in response
         if (actionDice.getDiceThrowsNormal().size() != 0) {
             dndResponse += "Your normal throws (without masteryClass): \n" +
