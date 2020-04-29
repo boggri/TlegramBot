@@ -12,22 +12,22 @@ public class UserInputVars {
     private static int numOfDamageDices;
 
     public static void setAllVariables(String userInput) {
-        String[] str;
-        str = userInput.split("\\s");
+        String[] parsedInput;
+        parsedInput = userInput.split("\\s");
 
-        int[] nums = new int[str.length];
+        int[] nums = new int[parsedInput.length];
 
-        for (int i = 0; i < str.length; i++) {
-            nums[i] = Integer.parseInt(str[i]);
+        for (int i = 0; i < parsedInput.length; i++) {
+            nums[i] = Integer.parseInt(parsedInput[i]);
         }
 
         //Parsing user input
-        numOfAttack =nums[0];
+        numOfAttack = nums[0];
 
         //Parsing with or without numOfDamageDice value)
         final int maxNumOfArguments = 8;
         int indexShift;
-        if (str.length == maxNumOfArguments) {
+        if (parsedInput.length == maxNumOfArguments) {
             numOfDamageDices = nums[1];
             indexShift = 1;
         } else {

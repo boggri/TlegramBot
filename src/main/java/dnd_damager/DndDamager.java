@@ -27,12 +27,17 @@ public class DndDamager implements CustomBotReplier {
                 userInputVars.getNumOfAttack(),
                 actionDice.getDiceThrowsCritical().size(),
                 damageDice.getCriticalDmg()
-                ) +
-                "Your normal throws (without masteryClass): \n" +
-                actionDice.getDiceThrowsNormal() + "\n\n";
+                );
 
+        //Display all not critical success throws is any in response
+        if (actionDice.getDiceThrowsNormal().size() != 0) {
+            dndResponse += "Your normal throws (without masteryClass): \n" +
+                    actionDice.getDiceThrowsNormal() + "\n\n";
+        }
+
+        //Display all critical throws is any in response
         if (actionDice.getDiceThrowsCritical().size() != 0) {
-            dndResponse += "Your critical throws: \n" +
+            dndResponse += "Your critical throws (without masteryClass): \n" +
                     actionDice.getDiceThrowsCritical();
 
         }

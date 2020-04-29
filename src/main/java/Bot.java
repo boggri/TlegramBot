@@ -56,7 +56,7 @@ public class Bot extends TelegramLongPollingBot {
             String message = update.getMessage().getText();
 
             //If match pattern get five integers
-            if (message.matches("\\d+\\s(\\d+\\s)?\\d+\\s\\d+\\s\\d+\\s(-?1|0)\\s\\d+\\s\\d+")) {
+            if (message.matches("\\d{1,4}\\s(\\d{1,4}\\s)?\\d{1,4}\\s\\d{1,4}\\s\\d{1,4}\\s(-?1|0)\\s\\d{1,4}\\s\\d{1,4}")) {
 
                 CustomBotReplier customBotReplier = new DndDamager(message);
                 botAnswer = customBotReplier.start();
